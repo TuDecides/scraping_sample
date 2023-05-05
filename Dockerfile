@@ -12,8 +12,11 @@ RUN sudo apt-get update && \
 # Create a virtual environment
 RUN python3 -m venv venv
 
-# Install requirements in the virtual environment
-RUN . venv/bin/activate && pip install --upgrade pip && pip install -r requirements.txt
+RUN . venv/bin/activate && pip install --upgrade pip setuptools selenium urllib3 &&  \
+    pip install -r requirements.txt \
+    && pip install --upgrade selenium urllib3 \
+    && pip install ipdb
+
 
 COPY . .
 
